@@ -11,4 +11,8 @@ export class BrandService {
     getALL(){
         return this.BrandModel.find({},{"brand_name" : 1, "_id": 0})
     }
+
+    getALLProd(brandName:string){
+        return this.BrandModel.findOne({brand_name: brandName}, {"_id": 0}).populate('products')
+    }
 }

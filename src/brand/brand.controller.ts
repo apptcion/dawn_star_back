@@ -9,4 +9,10 @@ export class BrandController {
     getALL(){
         return this.brandService.getALL();
     }
+
+    @Get('/getALLProd')
+    getALLProd(@Query('brand') brandName: string){
+        return this.brandService.getALLProd(brandName)
+    }
+
 }
