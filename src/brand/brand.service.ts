@@ -8,9 +8,15 @@ export class BrandService {
 
     constructor(@InjectModel(Brand.name) private readonly BrandModel: Model<Brand>){}
 
-    getALL(){
-        return this.BrandModel.find({},{"brand_name" : 1, "_id": 0})
-    }
+    getALL(getProd: boolean) {
+        const query = this.BrandModel.find({}, { brand_name: 1, _id: 0 });
+
+        if (getProd) {
+          query.populate('products');
+        }
+
+        return query.exec();
+      }
 
     getALLProd(brandName:string){
         return this.BrandModel.findOne({brand_name: brandName}, {"_id": 0}).populate('products')

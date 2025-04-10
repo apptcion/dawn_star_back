@@ -8,6 +8,7 @@ import { ManageModule } from './manage/manage.module';
 import { BrandModule } from './brand/brand.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { customParseBooleanPipe } from './pipes/customParseBoolean';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forRoot(process.env.DB_URL, {dbName : 'dawn_star'}),
     LoginModule, ProductModule, AuthModule, ManageModule, BrandModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, customParseBooleanPipe],
 })
 export class AppModule {}
