@@ -13,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     ConfigModule,
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.DB_URL),
+    MongooseModule.forRoot(process.env.DB_URL, {dbName : 'dawn_star'}),
     LoginModule, ProductModule, AuthModule, ManageModule, BrandModule],
   controllers: [AppController],
   providers: [AppService],

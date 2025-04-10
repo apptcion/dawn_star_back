@@ -6,4 +6,8 @@ export class ProductController {
 
     constructor(private readonly productService:ProductService){}
 
+    @Get('/getALL')
+    getALL(){
+        return this.productService.getALL()
+    }
 }
