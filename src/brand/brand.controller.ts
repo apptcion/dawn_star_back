@@ -5,4 +5,5 @@ import { BrandService } from './brand.service';
 export class BrandController {
     constructor(private readonly brandService:BrandService){}
 
+    
 }
