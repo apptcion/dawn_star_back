@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 
 @Controller('product')
@@ -9,5 +9,15 @@ export class ProductController {
     @Get('/getALL')
     getALL(){
         return this.productService.getALL()
+    }
+
+    @Get('/search')
+    search(@Query('keyword') keyword: string){
+        return this.productService.search(keyword)
+    }
+
+    @Get("/getInfo")
+    getInfo(@Query('id') id: string){
+        return this.productService.getOne(id)
     }
 }

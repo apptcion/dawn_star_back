@@ -11,4 +11,14 @@ export class ProductService {
     getALL(){
         return this.ProductModel.find()
     }
+
+    search(keyword: string){
+        return this.ProductModel.find(
+            { product_name: { $regex: keyword, $options: 'i' } },
+            { review: 0, valueInfo: 0, info: 0 })
+    }
+
+    getOne(_id: string){
+        return this.ProductModel.findById(_id)
+    }
 }
