@@ -1,12 +1,9 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from "@nestjs/common";
+import { stringify } from "querystring";
 
 @Injectable()
-export class customParseBooleanPipe implements PipeTransform{
-    transform(value: any, metadata: ArgumentMetadata) {
-        if(value == 'true'){
-            return true
-        }else{
-            return false
-        }
-    }
+export class CustomParseBooleanPipe implements PipeTransform {
+  transform(value: string): boolean {
+    return value.trim().toLowerCase() === 'true' || value === '1';
+  }
 }
