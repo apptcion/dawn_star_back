@@ -8,17 +8,24 @@ export class BrandService {
 
     constructor(@InjectModel(Brand.name) private readonly BrandModel: Model<Brand>){}
 
-    getALL(getProd: boolean) {
-        const query = this.BrandModel.find({}, { brand_name: 1, _id: 0 });
+    getALL(getProd: boolean, type: string | null) {
+        const where:any = {};
+        if(type){
+            where.type = type;
+        }
 
+        const query = this.BrandModel.find(where, { brand_name: 1 });
         if (getProd) {
           query.populate('products');
         }
-
         return query.exec();
       }
 
     getALLProd(brandName:string){
-        return this.BrandModel.findOne({brand_name: brandName}, {_id: 0}).populate('products')
+      if(brandName.toUpperCase() == 'ALL'){
+        return this.BrandModel.find().populate('products')
+      }else{
+        return this.BrandModel.findOne({brand_name: brandName}).populate('products')
+      }
     }
 }

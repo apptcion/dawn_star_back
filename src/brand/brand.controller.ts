@@ -7,8 +7,10 @@ export class BrandController {
     constructor(private readonly brandService:BrandService){}
 
     @Get('/getALL')
-    getALL(@Query("getProd", new DefaultValuePipe(false), customParseBooleanPipe) getProd: boolean){
-        return this.brandService.getALL(getProd);
+    getALL(@Query("getProd", new DefaultValuePipe(false),
+     customParseBooleanPipe) getProd: boolean,
+     @Query('type', new DefaultValuePipe(null)) type: string | null){
+        return this.brandService.getALL(getProd, type);
     }
 
     @Get('/getALLProd')
