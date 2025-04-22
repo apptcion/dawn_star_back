@@ -8,8 +8,13 @@ export class ProductService {
     
     constructor(@InjectModel(Product.name) private readonly ProductModel: Model<Product>){}
     
-    getALL(){
-        return this.ProductModel.find()
+    getALL(type: string | null){
+        const where:any = {};
+        if(type){
+            where.type = type;
+        }
+
+        return this.ProductModel.find(where)
     }
 
     search(keyword: string){

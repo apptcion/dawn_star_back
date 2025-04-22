@@ -14,7 +14,7 @@ export class BrandService {
             where.type = type;
         }
 
-        const query = this.BrandModel.find(where, { brand_name: 1 });
+        const query = this.BrandModel.find(where, { brand_name: 1, logo: 1 });
         if (getProd) {
           query.populate('products');
         }

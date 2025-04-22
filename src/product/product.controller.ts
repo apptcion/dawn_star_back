@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, DefaultValuePipe, Get, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 
 @Controller('product')
@@ -7,8 +7,8 @@ export class ProductController {
     constructor(private readonly productService:ProductService){}
 
     @Get('/getALL')
-    getALL(){
-        return this.productService.getALL()
+    getALL(@Query('type', new DefaultValuePipe(null)) type: string | null){
+        return this.productService.getALL(type)
     }
 
     @Get('/search')

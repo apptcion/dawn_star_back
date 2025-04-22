@@ -17,5 +17,4 @@ export class BrandController {
     getALLProd(@Query('brand') brandName: string){
         return this.brandService.getALLProd(brandName)
     }
-
 }
