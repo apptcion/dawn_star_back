@@ -10,5 +10,5 @@ options:
       value: mongodb+srv://root:rootStac1234@cluster0.f6uqu.mongodb.net/
 context:
   git:
-    url: https://github.com/your-username/your-repo.git
+    url: https://github.com/apptcion/dawn_star_back.git
     branch: master
