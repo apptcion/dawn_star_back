@@ -1,0 +1,25 @@
+name: Deploy to CloudType
+
+on:
+  push:
+    branches:
+      - master  # 또는 main 브랜치
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install CloudType CLI
+        run: npm install -g @cloudtype/cli
+
+      - name: Deploy to CloudType
+        run: ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
