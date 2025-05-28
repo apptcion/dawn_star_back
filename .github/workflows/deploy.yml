@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout source code
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install CloudType CLI
-        run: npm install -g @cloudtype/cli
+      - name: Install CloudType CLI locally
+        run: npm install @cloudtype/cli
 
       - name: Deploy to CloudType
-        run: ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
+        run: npx ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
