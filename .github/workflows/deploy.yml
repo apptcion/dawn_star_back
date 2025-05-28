@@ -3,29 +3,21 @@ name: Deploy to CloudType
 on:
   push:
     branches:
-      - master
+      - master  # 또는 main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout 소스코드
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Node.js 설정
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Install CloudType CLI locally
-        run: npm install @cloudtype/cli
-
-      - name: CloudType CLI 설치
-        run: npm install @cloudtype/cli
-
-      - name: PATH에 바이너리 경로 추가
-        run: echo "PATH=$(npm bin):$PATH" >> $GITHUB_ENV
-
-      - name: CloudType 배포
-        run: ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
+      - name: CloudType에 자동 배포
+        # npx가 @cloudtype/cli를 임시 설치하고, 그 안의 'ct' 바이너리를 바로 실행
+        run: npx --yes --package=@cloudtype/cli ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
