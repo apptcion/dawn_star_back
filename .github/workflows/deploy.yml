@@ -21,5 +21,11 @@ jobs:
       - name: Install CloudType CLI locally
         run: npm install @cloudtype/cli
 
-      - name: Deploy to CloudType
-        run: npx ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
+      - name: CloudType CLI 설치
+        run: npm install @cloudtype/cli
+
+      - name: PATH에 바이너리 경로 추가
+        run: echo "PATH=$(npm bin):$PATH" >> $GITHUB_ENV
+
+      - name: CloudType 배포
+        run: ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
