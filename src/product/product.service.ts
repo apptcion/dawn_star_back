@@ -24,6 +24,6 @@ export class ProductService {
     }
 
     getOne(_id: string){
-        return this.ProductModel.findById(_id)
+        return this.ProductModel.findById(_id).populate('reviews')
     }
 }
