@@ -3,14 +3,14 @@ name: Deploy to CloudType
 on:
   push:
     branches:
-      - master  # 또는 main
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout source
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -18,5 +18,8 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install CloudType CLI
+        run: npm install -g @cloudtype/cli
+
       - name: Deploy to CloudType
-        run: npx @cloudtype/cli deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
+        run: ct deploy -t ${{ secrets.CLOUDTYPE_TOKEN }}
